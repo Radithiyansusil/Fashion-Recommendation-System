@@ -19,7 +19,7 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 app = Flask(__name__)
 
 # Function to generate recommendations
-def generate_recommendation(gender,clothing_item, color, style, occasion, material, age_group, size):
+def generate_recommendation(gender,clothing_item, color, style, occasion, material, age, size):
     prompt = f"""
     You are a fashion expert. Your task is to suggest a complete outfit recommendation based on the following clothing item and its characteristics:
 
@@ -29,7 +29,7 @@ def generate_recommendation(gender,clothing_item, color, style, occasion, materi
     - Style: {style}
     - Occasion: {occasion}
     - Material: {material}
-    - Age Group: {age_group}
+    - Age: {age}
     - Size: {size}
 
     Based on the above details, suggest the following:
@@ -63,11 +63,11 @@ def home():
         style = request.form['style']
         occasion = request.form['occasion']
         material = request.form['material']
-        age_group = request.form['age_group']
+        age = request.form['age']
         size = request.form['size']
 
         # Generate recommendations
-        recommendations = generate_recommendation(gender,clothing_item, color, style, occasion, material, age_group, size)
+        recommendations = generate_recommendation(gender,clothing_item, color, style, occasion, material, age, size)
         return render_template('index.html', recommendations=recommendations)
     return render_template('index.html')
 
