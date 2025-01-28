@@ -1,0 +1,25 @@
+# Ignore the virtual environment folder
+.venv/
+fashion/
+
+# Ignore sensitive files
+creds.py
+creds
+
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Ignore environment-specific files
+.env
+.env.local
+.env.development
+.env.production
+
+# Ignore IDE-specific files
+.vscode/
+.idea/

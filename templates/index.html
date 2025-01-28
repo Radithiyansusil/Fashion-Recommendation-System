@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Fashion Recommendation System</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="Male" {% if request.form.get('gender') == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if request.form.get('gender') == 'Female' %}selected{% endif %}>Female</option>
+                    <option value="Unisex" {% if request.form.get('gender') == 'Unisex' %}selected{% endif %}>Unisex</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="clothing_item">Clothing Item:</label>
+                <input type="text" id="clothing_item" name="clothing_item" value="{{ request.form.get('clothing_item', '') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color" value="{{ request.form.get('color', '') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="style">Style:</label>
+                <input type="text" id="style" name="style" value="{{ request.form.get('style', '') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="occasion">Occasion:</label>
+                <input type="text" id="occasion" name="occasion" value="{{ request.form.get('occasion', '') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="material">Material:</label>
+                <input type="text" id="material" name="material" value="{{ request.form.get('material', '') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="age_group">Age Group:</label>
+                <input type="text" id="age_group" name="age_group" value="{{ request.form.get('age_group', '') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="size">Size:</label>
+                <input type="text" id="size" name="size" value="{{ request.form.get('size', '') }}" required>
+            </div>
+            <button type="submit">Get Recommendation</button>
+        </form>
+
+        {% if recommendations %}
+        <div class="output">
+            <h2>Recommendation:</h2>
+            <p>{{ recommendations | safe }}</p>
+            <button onclick="resetForm()" class="try-again">Try Again</button>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function resetForm() {
+            document.querySelector('form').reset(); // Reset the form
+            document.querySelector('.output').style.display = 'none'; // Hide the recommendation output
+        }
+    </script>
+</body>
+</html>
