@@ -13,7 +13,7 @@ import creds
 # Initialize logging system
 absl.logging.set_verbosity(absl.logging.ERROR)
 
-genai.configure(api_key=creds.api_key)
+genai.configure(api_key=creds.api_key) # Set the API key for the GenAI client
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 app = Flask(__name__)
